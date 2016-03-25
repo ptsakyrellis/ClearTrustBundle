@@ -18,5 +18,5 @@
         "psr-0": { "AcToulouse\\ClearTrustBundle": "" }
     },
     "target-dir": "AcToulouse/ClearTrustBundle",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev-master"
 }
