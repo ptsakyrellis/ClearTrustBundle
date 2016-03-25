@@ -1,0 +1,21 @@
+{
+    "name": "ac-toulouse/clear-trust-bundle",
+    "type": "symfony-bundle",
+    "description": "RSA ClearTrust authentication",
+    "keywords": ["RSA", "ClearTrust", "Symfony2", "Authentication"],
+    "homepage": "https://github.com/git-dsi-da/ClearTrustBundle",
+    "license": "CeCILL-B",
+    "authors": [
+        {
+            "name": "Bertrand Ailleres"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "symfony/symfony": "2.7.*"
+    },
+    "autoload": {
+        "psr-0": { "AcToulouse\\ClearTrustBundle": "" }
+    },
+    "target-dir": "AcToulouse/ClearTrustBundle"
+}

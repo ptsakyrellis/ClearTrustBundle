@@ -1,0 +1,40 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    clear_trust.rsa_remote_user: 'ct-remote-user'
+    clear_trust.rsa_cookie_name : 'CTSESSION'
+    clear_trust.attribute_definitions : []
+    clear_trust.logout_target_url : 'https://si-gestion.in.ac-toulouse.fr'
+    clear_trust.login_target_url : 'https://si-gestion.in.ac-toulouse.fr'
+
+services:
+    cleartrust.security.authentication.provider:
+        class: AcToulouse\ClearTrustBundle\Security\Authentication\Provider\ClearTrustAuthProvider
+        arguments:
+            -   ''
+        public: false
+
+    cleartrust.security.authentication.listener:
+        class: AcToulouse\ClearTrustBundle\Security\Firewall\ClearTrustListener
+        arguments: ['@security.token_storage', '@security.authentication.manager', '@cleartrust.security.authentication.entry_point', '@cleartrust']
+        public: false
+
+    cleartrust.security.logout.handler:
+        class: AcToulouse\ClearTrustBundle\Security\Logout\ClearTrustLogoutHandler
+        arguments:
+            -   %clear_trust.logout_target_url%
+        public: false
+
+    cleartrust.security.authentication.entry_point:
+        class: AcToulouse\ClearTrustBundle\Security\Authentication\EntryPoint\ClearTrustEntryPoint
+        arguments:
+            -   %clear_trust.login_target_url%
+        public: false
+
+    cleartrust:
+        class: AcToulouse\ClearTrustBundle\Service\ClearTrust
+        arguments:
+            -   %clear_trust.rsa_remote_user%
+            -   %clear_trust.rsa_cookie_name%
+            -   %clear_trust.attribute_definitions%
+        public: false
