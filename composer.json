@@ -2,6 +2,7 @@
     "name": "ac-toulouse/clear-trust-bundle",
     "type": "symfony-bundle",
     "description": "RSA ClearTrust authentication",
+    "minimum-stability": "dev",
     "keywords": ["RSA", "ClearTrust", "Symfony2", "Authentication"],
     "homepage": "https://github.com/git-dsi-da/ClearTrustBundle",
     "license": "CeCILL-B",
@@ -10,7 +11,6 @@
             "name": "Bertrand Ailleres"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.9",
         "symfony/symfony": "2.7.*"
