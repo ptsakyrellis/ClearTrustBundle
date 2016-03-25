@@ -2,8 +2,6 @@
     "name": "ac-toulouse/clear-trust-bundle",
     "type": "symfony-bundle",
     "description": "RSA ClearTrust authentication",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "keywords": ["RSA", "ClearTrust", "Symfony2", "Authentication"],
     "homepage": "https://github.com/git-dsi-da/ClearTrustBundle",
     "license": "CeCILL-B",
