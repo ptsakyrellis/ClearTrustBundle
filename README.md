@@ -1,11 +1,11 @@
 # ClearTrustBundle
 
-Ce bundle permet d'utiliser l'authentification RSA-ClearTrust dans votre projet Symfony2.
+Ce bundle permet d'utiliser l'authentification RSA-ClearTrust dans votre projet Symfony.
 
 Pré-requis
 ----------
-* PHP 5.3.9 et au dela
-* Symfony 2.7 et au dela
+* PHP 5.6
+* Symfony 3
 
 Installation
 ------------
