@@ -1,5 +1,3 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
     clear_trust.rsa_remote_user: 'ct-remote-user'
     clear_trust.rsa_cookie_name : 'CTSESSION'
