@@ -30,7 +30,8 @@ services:
         public: false
 
     cleartrust.security.authentication.authenticator:
-        class:  AcToulouse\ClearTrustBundle\Security\
+        class:  AcToulouse\ClearTrustBundle\Security\ClearTrustGuardAuthenticator
+
 
     cleartrust:
         class: AcToulouse\ClearTrustBundle\Service\ClearTrust
