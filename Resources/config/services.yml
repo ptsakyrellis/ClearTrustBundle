@@ -36,3 +36,6 @@ services:
             -   %clear_trust.rsa_cookie_name%
             -   %clear_trust.attribute_definitions%
         public: false
+
+    cleartrust.security.authentication.authenticator:
+        class:  AcToulouse\ClearTrustBundle\Security\\RSAGuardAuthenticator
