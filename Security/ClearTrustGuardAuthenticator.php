@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouterInterface;
 
 
-class RSAGuardAuthenticator extends AbstractGuardAuthenticator
+class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
 {
     private $em;
 
