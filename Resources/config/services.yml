@@ -29,6 +29,9 @@ services:
             -   %clear_trust.login_target_url%
         public: false
 
+    cleartrust.security.authentication.authenticator:
+        class:  AcToulouse\ClearTrustBundle\Security\
+
     cleartrust:
         class: AcToulouse\ClearTrustBundle\Service\ClearTrust
         arguments:
@@ -36,6 +39,3 @@ services:
             -   %clear_trust.rsa_cookie_name%
             -   %clear_trust.attribute_definitions%
         public: false
-
-    cleartrust.security.authentication.authenticator:
-        class:  AcToulouse\ClearTrustBundle\Security\ClearTrustGuardAuthenticator

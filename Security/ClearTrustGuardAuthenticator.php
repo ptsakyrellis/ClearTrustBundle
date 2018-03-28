@@ -3,7 +3,6 @@ namespace AcToulouse\ClearTrustBundle\Security;
 
 use AcToulouse\ClearTrustBundle\Security\Authentication\Token\ClearTrustToken;
 use AcToulouse\ClearTrustBundle\Service\ClearTrust;
-use App\Event\RSALoginEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -18,8 +17,6 @@ use Symfony\Component\Routing\RouterInterface;
 
 class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
 {
-    private $em;
-
     /**
      * @var EventDispatcherInterface
      */
@@ -27,9 +24,8 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
 
     protected $cleartrust;
 
-    public function __construct(EntityManager $em, RouterInterface $router, EventDispatcherInterface $dispatcher, ClearTrust $cleartrust)
+    public function __construct(EventDispatcherInterface $dispatcher, ClearTrust $cleartrust)
     {
-        $this->em = $em;
         $this->dispatcher = $dispatcher;
         $this->cleartrust = $cleartrust;
     }
@@ -59,10 +55,6 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
     public function checkCredentials($credentials, UserInterface $user)
     {
         $token = new ClearTrustToken($user);
-        $this->dispatcher->dispatch(
-            RSALoginEvent::SUCCESS,
-            new RSALoginEvent($user, $token)
-        );
 
         return true;
     }
