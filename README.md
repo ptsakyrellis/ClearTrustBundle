@@ -1,6 +1,6 @@
 # ClearTrustBundle
 
-Ce bundle permet d'utiliser l'authentification RSA-ClearTrust dans votre projet Symfony.
+Ce bundle Symfony permet d'utiliser l'authentification RSA-ClearTrust dans votre projet Symfony, et plus précisément l'utilisation de RSA pour une authentification via des Trusted Headers (cf. https://community.rsa.com/docs/DOC-53978) 
 
 Pré-requis
 ----------
@@ -10,10 +10,10 @@ Pré-requis
 Installation
 ------------
 
-### 1. Installer ClearTrustBundle avec composer
+### 1. Installation avec composer
 
 ```bash
-composer require ac-toulouse/clear-trust-bundle:dev-master
+$ composer require ptsakyrellis/clear-trust-bundle:dev-master
 ```
 
 ### 2. Activer le bundle dans le kernel
@@ -77,30 +77,17 @@ Attributs ClearTrust disponibles
 --------------------------------
 Par défaut le bundle permet l'accès à de nombreux attributs ClearTrust, accessibles via le token `AcToulouse\ClearTrustBundle\Security\Authentication\/Token\ClearTrustToken.php`. 
 Le token fournit des accesseurs pour la plupart des attributs, ainsi que les accesseurs génériques `getAttribute` et `getArrayAttribute`. 
+
 Chaque attribut est identifié par un alias qui sert d'argument à ces methodes. 
 Le tableau suivant liste les attributs disponibles lorsqu'ils sont fournis par ClearTrust :
 
 | Attribut             | Alias                |
 | -------------------- | -------------------- |
 | ct-remote-user       | uid                  |
-| cn                   | cn                   |
 | ctln                 | sn                   |
 | ctfn                 | givenName            |
 | ctemail              | mail                 |
 | ctdn                 | dn                   |
-| employeeNumber       | numen                |
-| rne                  | rne                  |
-| typensi              | typeNsi              |
-| title                | title                |
-| grade                | grade                |
-| datenaissance        | dateNaissance        |
-| civilite             | civilite             |
-| FrEduFonctAdm        | FrEduFonctAdm        |
-| ctgrps               | groupes              |
-| FrEduResDel          | FrEduResDel          |
-| FrEduGestResp        | FrEduGestResp        |
-| FrEduRne             | FrEduRne             |
-| FrEduRneResp         | FrEduRneResp         |
 
 Si vous souhaitez accéder à des attributs supplémentaires non listés dans ce tableau, vous pouvez les ajouter via la configuration du bundle :
 
@@ -108,7 +95,7 @@ Si vous souhaitez accéder à des attributs supplémentaires non listés dans ce
 # app/config/config.yml
 clear_trust_:
     # ...
-    attribute_definitions:
+    attribute_deinitions:
         monAttrMono:                                      # alias de l'attribut monovalué
             header: FrEduAttrMono                         # nom de l'attribut monovalué
         monAttrMulti:                                     # alias de l'attribut multivalué
@@ -330,3 +317,35 @@ class MyUser extends ClearTrustUser
 }   
 ```
 
+License
+-------------
+
+Copyright MEN - Rectorat de Toulouse
+DSI - Développements académiques - dsi {at} ac-toulouse.fr
+
+Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
+respectant les principes de diffusion des logiciels libres. Vous pouvez utiliser, 
+modifier et/ou redistribuer ce programme sous les conditions 
+de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA
+sur le site "http://www.cecill.info".
+
+En contrepartie de l'accessibilité au code source et des droits de copie,
+de modification et de redistribution accordés par cette licence, il n'est
+offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+titulaire des droits patrimoniaux et les concédants successifs.
+
+A cet égard  l'attention de l'utilisateur est attirée sur les risques
+associés au chargement,  à l'utilisation,  à la modification et/ou au
+développement et à la reproduction du logiciel par l'utilisateur étant
+donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+manipuler et qui le réserve donc à des développeurs et des professionnels
+avertis possédant  des  connaissances  informatiques approfondies.  Les
+utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+logiciel à leurs besoins dans des conditions permettant d'assurer la
+sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+
+Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
+termes.
