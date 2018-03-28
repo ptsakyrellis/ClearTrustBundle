@@ -18,18 +18,18 @@ use Symfony\Component\Routing\RouterInterface;
 class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
 {
     /**
-     * @var EventDispatcherInterface
+     * @var ClearTrust
      */
-    protected $dispatcher;
-
     protected $cleartrust;
 
-    public function __construct(EventDispatcherInterface $dispatcher, ClearTrust $cleartrust)
+    public function __construct(ClearTrust $cleartrust)
     {
-        $this->dispatcher = $dispatcher;
         $this->cleartrust = $cleartrust;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function start(Request $request, AuthenticationException $authException = null)
     {
         $entryPoint = $this->get('cleartrust.security.authentication.entry_point');
@@ -37,6 +37,9 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
         return $entryPoint->start($request);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCredentials(Request $request)
     {
         if (!$this->supports($request)) {
@@ -46,12 +49,18 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
         return $this->cleartrust->getAttributes($request);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         // Should load user from db
         return $userProvider->loadUserByUsername($credentials['uid']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         $token = new ClearTrustToken($user);
@@ -59,6 +68,9 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
@@ -69,6 +81,9 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function supportsRememberMe()
     {
         return false;
