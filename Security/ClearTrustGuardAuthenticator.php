@@ -21,9 +21,11 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
      * @var ClearTrust
      */
     protected $cleartrust;
+    protected $entrypoint;
 
-    public function __construct(ClearTrust $cleartrust)
+    public function __construct(ClearTrust $cleartrust, AuthenticationEntryPointInterface $authenticationEntryPoint)
     {
+        $this->entrypoint = $authenticationEntryPoint;
         $this->cleartrust = $cleartrust;
     }
 
@@ -32,9 +34,7 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        $entryPoint = $this->get('cleartrust.security.authentication.entry_point');
-
-        return $entryPoint->start($request);
+        return $this->entrypoint->start($request);
     }
 
     /**

@@ -31,7 +31,7 @@ services:
 
     cleartrust.security.authentication.authenticator:
         class:  AcToulouse\ClearTrustBundle\Security\ClearTrustGuardAuthenticator
-        arguments: ['@cleartrust']
+        arguments: ['@cleartrust', '@cleartrust.security.authentication.entry_point']
 
     cleartrust:
         class: AcToulouse\ClearTrustBundle\Service\ClearTrust
