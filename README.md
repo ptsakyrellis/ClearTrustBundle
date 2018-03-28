@@ -38,7 +38,7 @@ Configuration
 
 Le bundle ne vérifie pas que votre application est protégée, c'est votre responsabilité de le faire.
 
-### 2. Paramétrage du firewall
+### 2. Paramétrage du firewall (utilisation par défaut)
 
 ```yml
 # app/config/security.yml
@@ -50,6 +50,25 @@ security:
             logout:
                 path: /logout 
                 success_handler: cleartrust.security.logout.handler
+```
+
+### 2bis. Paramétrage du firewall pour utilisation du composant Guard de Symfony
+
+Le bundle fournit également une classe permettant d'utiler l'authentification via le module Guard de Symfony. Ainsi, vous pourrez mélanger différentes modes d'authentifications, points d'entrée, etc...
+
+```yml
+# app/config/security.yml
+security:
+    firewalls:
+        cleartrust:
+            pattern: ^/
+            cleartrust: ~
+            logout:
+                path: /logout 
+                success_handler: cleartrust.security.logout.handler
+            guard:
+                authenticators:
+                    - cleartrust.security.authentication.authenticator
 ```
 
 ### 3. Paramétrage du bundle
