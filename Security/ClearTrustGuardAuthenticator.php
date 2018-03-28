@@ -1,6 +1,7 @@
 <?php
 namespace AcToulouse\ClearTrustBundle\Security;
 
+use AcToulouse\ClearTrustBundle\Security\Authentication\EntryPoint\ClearTrustEntryPoint;
 use AcToulouse\ClearTrustBundle\Security\Authentication\Token\ClearTrustToken;
 use AcToulouse\ClearTrustBundle\Service\ClearTrust;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -23,9 +24,9 @@ class ClearTrustGuardAuthenticator extends AbstractGuardAuthenticator
     protected $cleartrust;
     protected $entrypoint;
 
-    public function __construct(ClearTrust $cleartrust, AuthenticationEntryPointInterface $authenticationEntryPoint)
+    public function __construct(ClearTrust $cleartrust, ClearTrustEntryPoint $clearTrustEntryPoint)
     {
-        $this->entrypoint = $authenticationEntryPoint;
+        $this->entrypoint = $clearTrustEntryPoint;
         $this->cleartrust = $cleartrust;
     }
 
