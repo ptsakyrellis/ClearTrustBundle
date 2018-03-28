@@ -38,4 +38,4 @@ services:
         public: false
 
     cleartrust.security.authentication.authenticator:
-        class:  AcToulouse\ClearTrustBundle\Security\\RSAGuardAuthenticator
+        class:  AcToulouse\ClearTrustBundle\Security\ClearTrustGuardAuthenticator
